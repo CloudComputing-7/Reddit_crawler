@@ -42,9 +42,6 @@ def test_crawl_interval_default():
     assert cfg.CRAWL_INTERVAL_HOURS == 1
 
 
-def test_user_agent_default():
-    os.environ.pop("REDDIT_USER_AGENT", None)
-    if "reddit_crawler.config" in sys.modules:
-        del sys.modules["reddit_crawler.config"]
-    import reddit_crawler.config as cfg
-    assert "reddit-crawler" in cfg.REDDIT_USER_AGENT
+def test_user_agent_is_set():
+    cfg = reload_config({"REDDIT_USER_AGENT": "test-agent/1.0"})
+    assert cfg.REDDIT_USER_AGENT == "test-agent/1.0"

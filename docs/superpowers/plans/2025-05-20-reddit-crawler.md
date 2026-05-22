@@ -6,7 +6,9 @@
 
 **Architecture:** `reddit_crawler/` 패키지 안에 config, crawler, article, storage, scheduler 모듈을 분리한다. 로컬 진입점은 `main.py`, Lambda stub은 `reddit_crawler/lambda_handler.py`. APScheduler BlockingScheduler가 매 1시간마다 크롤링을 트리거한다.
 
-**Tech Stack:** Python 3.11+, praw 7.7+, trafilatura 1.6+, newspaper3k 0.2+, apscheduler 3.10+, python-dotenv 1.0+, pytest 7+, pytest-mock
+**Tech Stack:** Python 3.11+, requests 2.31+, trafilatura 1.6+, newspaper3k 0.2+, apscheduler 3.10+, python-dotenv 1.0+, pytest 7+, pytest-mock
+
+> **변경:** 공식 Reddit API 불가 → `reddit.com/r/{sub}/new.json` 엔드포인트 + 커스텀 User-Agent 사용. praw 제거.
 
 ---
 
